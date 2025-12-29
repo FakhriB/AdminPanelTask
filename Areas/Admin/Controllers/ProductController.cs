@@ -1,5 +1,6 @@
 ﻿using Fiorello.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Concurrent;
 
 namespace Fiorello.Areas.Admin.Controllers
 {
@@ -11,11 +12,10 @@ namespace Fiorello.Areas.Admin.Controllers
         {
             _productService = productService;
         }
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var results = await _productService.GetAllAdminAsync();
-            return View(results);
+            var products = await _productService.GetAllAdminAsync();
+            return View(products);
         }
     }
 }
